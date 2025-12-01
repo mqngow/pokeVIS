@@ -163,5 +163,54 @@ def get_move(move_name):
 def index():
     return render_template('index.html')
 
+@app.route('/pokemon/<identifier>')
+def pokemon_detail(identifier):
+    pokemon = get_pokemon(identifier)
+
+    if not pokemon:
+        return render_template('error.html', message = f"Pokemon '{identifier}' not found"), 404
+
+    return render_template('pokemon.html', pokemon = pokemon)
+
+@app.route('/move/<move_name>')
+def move_detail(move_name):
+    move = get_move(move_name)
+
+    if not move:
+        return render_template('error.html', message = f"Move '{move_name}' not found"), 404
+
+    return render_template('move.html', move = move)
+
+@app.route('/ability/<ability_name>')
+def ability_detail(ability_name):
+    ability = get_ability(ability_name)
+
+    if not ability:
+        return render_template('error.html', message = f"Ability '{ability_name}' not found"), 404
+
+    return render_template('ability.html', ability=ability)
+
+@app.route('/api/search')
+def search():
+    query = request.args.get('q', '').lower()
+    
+    if len(query) < 2:
+        return jsonify([])
+    
+    try:
+        # Get all pokemon
+        response = requests.get(f"{POKEAPI_URL}/pokemon?limit=1000", timeout=10)
+        response.raise_for_status()
+        all_pokemon = response.json()['results']
+        
+        # Filter by user query
+        matches = [p['name'] for p in all_pokemon if query in p['name']][:10]
+        
+        return jsonify(matches)
+    
+    except requests.RequestException as e:
+        print(f"Search error: {e}")
+        return jsonify([])
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
