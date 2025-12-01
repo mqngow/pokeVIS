@@ -120,6 +120,45 @@ def get_ability(ability_name):
         print(f"Error fetching ability: {e}")
         return None
 
+# Get move    
+def get_move(move_name):
+    try:
+        move_name = str(move_name).lower().strip()
+        response = requests.get(f"{POKEAPI_URL}/move/{move_name}", timeout=10)
+        
+        if response.status_code == 404:
+            return None
+        
+        response.raise_for_status()
+        data = response.json()
+        
+        # Get Pokemon that can learn the move
+        learnable_by = []
+        for pokemon in data['learned_by_pokemon'][:25]:  # Set Limit to 25
+            learnable_by.append({
+                'name': pokemon['name'],
+                'url': pokemon['url']
+            })
+        
+        # Format
+        move = {
+            'name': data['name'].replace('-', ' ').title(),
+            'id': data['id'],
+            'type': data['type']['name'],
+            'power': data['power'] if data['power'] else 'N/A',
+            'accuracy': data['accuracy'] if data['accuracy'] else 'N/A',
+            'pp': data['pp'],
+            'damage_class': data['damage_class']['name'],  # physical, special, or status
+            'effect': data['effect_entries'][0]['short_effect'] if data['effect_entries'] else 'No description available',
+            'learnable_by': learnable_by
+        }
+        
+        return move
+    
+    except requests.RequestException as e:
+        print(f"Error fetching move: {e}")
+        return None
+
 @app.route('/')
 def index():
     return render_template('index.html')
