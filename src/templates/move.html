@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}{{ move.name }} - PokéVIS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow">
+            <div class="card-header bg-{{ move.type }} text-white">
+                <h2 class="mb-0">{{ move.name }}</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Move Details</h4>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Type:</span>
+                                <span class="badge bg-{{ move.type }}">{{ move.type|upper }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Category:</span>
+                                <strong>
+                                    {% if move.damage_class == 'physical' %}
+                                    <span class="badge bg-danger">Physical</span>
+                                    {% elif move.damage_class == 'special' %}
+                                    <span class="badge bg-primary">Special</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">Status</span>
+                                    {% endif %}
+                                </strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Power:</span>
+                                <strong>{{ move.power }}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Accuracy:</span>
+                                <strong>{{ move.accuracy }}{% if move.accuracy != 'N/A' %}%{% endif %}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>PP:</span>
+                                <strong>{{ move.pp }}</strong>
+                            </li>
+                        </ul>
+
+                        <h4>Effect</h4>
+                        <p class="text-muted">{{ move.effect }}</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Pokémon That Can Learn This Move</h4>
+                        <div class="pokemon-grid">
+                            {% for pokemon in move.learnable_by %}
+                            <a href="/pokemon/{{ pokemon.name }}" class="btn btn-outline-primary btn-sm mb-2 me-2 text-capitalize">
+                                {{ pokemon.name }}
+                            </a>
+                            {% endfor %}
+                            {% if move.learnable_by|length == 30 %}
+                            <p class="text-muted mt-2">Showing first 30 Pokémon</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="javascript:history.back()" class="btn btn-secondary">← Back</a>
+                <a href="/" class="btn btn-outline-secondary">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
