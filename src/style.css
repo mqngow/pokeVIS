@@ -1,0 +1,93 @@
+/* Pokemon Type Colors */
+.bg-normal { background-color: #A8A878 !important; color: #fff; }
+.bg-fire { background-color: #F08030 !important; color: #fff; }
+.bg-water { background-color: #6890F0 !important; color: #fff; }
+.bg-electric { background-color: #F8D030 !important; color: #333; }
+.bg-grass { background-color: #78C850 !important; color: #fff; }
+.bg-ice { background-color: #98D8D8 !important; color: #333; }
+.bg-fighting { background-color: #C03028 !important; color: #fff; }
+.bg-poison { background-color: #A040A0 !important; color: #fff; }
+.bg-ground { background-color: #E0C068 !important; color: #333; }
+.bg-flying { background-color: #A890F0 !important; color: #fff; }
+.bg-psychic { background-color: #F85888 !important; color: #fff; }
+.bg-bug { background-color: #A8B820 !important; color: #fff; }
+.bg-rock { background-color: #B8A038 !important; color: #fff; }
+.bg-ghost { background-color: #705898 !important; color: #fff; }
+.bg-dragon { background-color: #7038F8 !important; color: #fff; }
+.bg-dark { background-color: #705848 !important; color: #fff; }
+.bg-steel { background-color: #B8B8D0 !important; color: #333; }
+.bg-fairy { background-color: #EE99AC !important; color: #333; }
+
+.pokemon-sprite {
+    max-width: 200px;
+    image-rendering: pixelated;
+}
+
+#pokemonSearch:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#searchResults {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+}
+
+#searchResults .list-group-item {
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+#searchResults .list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.stats-container {
+    margin-top: 1rem;
+}
+
+.card {
+    border: none;
+}
+
+.progress {
+    height: 20px;
+}
+
+.badge {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.move-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.move-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.move-link .badge {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.move-link .badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.pokemon-grid {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.pokemon-grid .btn {
+    min-width: 120px;
+}
