@@ -70,6 +70,55 @@ def get_pokemon(identifier):
     except requests.RequestException as e:
         print(f"Error fetching Pokemon: {e}")
         return None
+    
+# Get ability
+def get_ability(ability_name):
+    try:
+        ability_name = str(ability_name).lower().strip()
+        response = requests.get(f"{POKEAPI_URL}/ability/{ability_name}", timeout=10)
+        
+        if response.status_code == 404:
+            return None
+        
+        response.raise_for_status()
+        data = response.json()
+        
+        # Get Pokemon that have the ability
+        pokemon_with_ability = []
+        for pokemon in data['pokemon'][:25]:  # Set limit to 25 pokemon
+            pokemon_with_ability.append({
+                'name': pokemon['pokemon']['name'],
+                'is_hidden': pokemon['is_hidden']
+            })
+        
+        # Get effect description
+        effect = 'No description available'
+        for entry in data['effect_entries']:
+            if entry['language']['name'] == 'en':
+                effect = entry['effect']
+                break
+        
+        # Get short effect if possible
+        short_effect = effect
+        for entry in data['effect_entries']:
+            if entry['language']['name'] == 'en' and 'short_effect' in entry:
+                short_effect = entry['short_effect']
+                break
+        
+        # Format
+        ability = {
+            'name': data['name'].replace('-', ' ').title(),
+            'id': data['id'],
+            'effect': effect,
+            'short_effect': short_effect,
+            'pokemon': pokemon_with_ability
+        }
+        
+        return ability
+    
+    except requests.RequestException as e:
+        print(f"Error fetching ability: {e}")
+        return None
 
 @app.route('/')
 def index():
