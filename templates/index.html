@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Home - PokéVIS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Pokemon Finder</h1>
+        <p class="lead mb-5">Search for any Pokemon to view their stats</p>
+        
+        <form id="searchForm" class="mb-5">
+            <div style="position: relative;">
+                <div class="input-group input-group-lg">
+                    <input type="text" 
+                           id="pokemonSearch" 
+                           class="form-control" 
+                           placeholder="Enter Pokemon name or ID (e.g., pikachu, 25)"
+                           autocomplete="off"
+                           required>
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+                <div id="searchResults" class="list-group mt-2"></div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-3">Popular Pokemon</h3>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="/pokemon/pikachu" class="btn btn-outline-primary">Pikachu</a>
+                    <a href="/pokemon/charizard" class="btn btn-outline-primary">Charizard</a>
+                    <a href="/pokemon/mewtwo" class="btn btn-outline-primary">Mewtwo</a>
+                    <a href="/pokemon/eevee" class="btn btn-outline-primary">Eevee</a>
+                    <a href="/pokemon/snorlax" class="btn btn-outline-primary">Snorlax</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Search
+    $('#searchForm').on('submit', function(e) {
+        e.preventDefault();
+        const query = $('#pokemonSearch').val().trim().toLowerCase();
+        if(query) {
+            window.location.href = `/pokemon/${query}`;
+        }
+    });
+
+    // Autocomplete
+    let searchTimeout;
+    $('#pokemonSearch').on('input', function() {
+        clearTimeout(searchTimeout);
+        const query = $(this).val().trim();
+        
+        if(query.length < 2) {
+            $('#searchResults').empty().hide();
+            return;
+        }
+
+        searchTimeout = setTimeout(function() {
+            $.get('/api/search', { q: query }, function(results) {
+                const $results = $('#searchResults');
+                $results.empty();
+                
+                if(results.length > 0) {
+                    results.forEach(function(name) {
+                        const $item = $('<a>')
+                            .addClass('list-group-item list-group-item-action')
+                            .attr('href', '/pokemon/' + name)
+                            .text(name.charAt(0).toUpperCase() + name.slice(1));
+                        $results.append($item);
+                    });
+                    $results.show();
+                } else {
+                    $results.hide();
+                }
+            });
+        }, 300);
+    });
+
+    // Hide results on click outside
+    $(document).on('click', function(e) {
+        if(!$(e.target).closest('#pokemonSearch, #searchResults').length) {
+            $('#searchResults').hide();
+        }
+    });
+</script>
+{% endblock %}
