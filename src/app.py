@@ -43,7 +43,7 @@ def get_pokemon(identifier):
                 except:
                     move_type = 'normal'
 
-                move.append({
+                moves.append({
                     'name': move_name,
                     'level': level_learned,
                     'type': move_type
