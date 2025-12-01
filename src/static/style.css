@@ -19,7 +19,8 @@
 .bg-fairy { background-color: #EE99AC !important; color: #333; }
 
 .pokemon-sprite {
-    max-width: 200px;
+    width: 100%;
+    max-width: 400px;
     image-rendering: pixelated;
 }
 
