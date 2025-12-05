@@ -12,11 +12,16 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-5 text-center">
-                        <img src="{{ pokemon.sprite }}" alt="{{ pokemon.name }}" class="img-fluid pokemon-sprite">
-                        <div class="mt-3">
-                            {% for type in pokemon.types %}
-                            <span class="badge bg-{{ type }} me-1">{{ type|upper }}</span>
-                            {% endfor %}
+                        <img src="{{ pokemon.sprite }}" alt="{{ pokemon.name }}" class="img-fluid pokemon-sprite"
+                            id="pokemonSprite" data-default="{{ pokemon.sprite }}"
+                            data-shiny="{{ pokemon.shiny_sprite }}">
+
+                        <div class="d-flex justify-content-center align-items-center mt-2">
+                            <span class="me-2">Default</span>
+                            <div class="form-check form-switch mb-0">
+                                <input class="form-check-input" type="checkbox" id="shinyToggle" role="switch">
+                            </div>
+                            <span class="ms-2">Shiny</span>
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -93,4 +98,20 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('shinyToggle').addEventListener('change', function() {
+        const sprite = document.getElementById('pokemonSprite');
+        const defaultSprite = sprite.getAttribute('data-default');
+        const shinySprite = sprite.getAttribute('data-shiny');
+        
+        if (this.checked) {
+            sprite.src = shinySprite;
+        } else {
+            sprite.src = defaultSprite;
+        }
+    });
+</script>
 {% endblock %}

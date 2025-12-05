@@ -57,6 +57,7 @@ def get_pokemon(identifier):
             'id': data['id'],
             'name': data['name'].title(),
             'sprite': data['sprites']['front_default'],
+            'shiny_sprite': data['sprites']['front_shiny'],
             'height': data['height'] / 10, # To meters
             'weight': data['weight'] / 10, # To kilograms
             'types': [t['type']['name'] for t in data['types']],
