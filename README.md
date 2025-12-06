@@ -2,7 +2,7 @@
 
 ## 1) Executive Summary
 
-**Problem:** Growing up I was a huge fan of Pokemon, constantly playing the new releases or, on occasion, buying pokemon cards. However, whilst playing pokemon games, I don't always know what pokemon I'm up against. This becomes especially important when it comes to stats and types.
+**Problem:** Growing up I was a huge fan of Pokemon, constantly playing the new releases or, on occasion, buying pokemon cards. However, whilst playing pokemon games, I did not always know what pokemon I was up against. This becomes especially important when it comes to stats and types.
 
 **Solution:** pokeVIS fixes this problem. It is a web-based information search system that gives useful information on any pokemon. Either by the Pokemon's name or ID, users can see what type, stats, abilities, and learnable moves for the Pokemon they search for in pokeVIS. The website it made to be easy to understand, with types for moves being badges with their respective type coloring, or a simple layout to understand how much HP (hit points/health) or SP (special defense) a pokemon has. The build itself pulls from the free and updating PokeAPI, making it easy to deploy and lightweight in general due to the lack of a database.
 
