@@ -13,8 +13,10 @@
 - **Docker Containerization**: Application packaging and deployment
 - **API Integration**: Using external APIs (PokeAPI)
 
-**Architecture Diagram:**
-![Architecture](assets/pokeVIS_Architecture.png)
+**Architecture Diagram:**  
+<div align="center">
+  <img src="assets/pokeVIS_Architecture.png" alt="Architecture">
+</div>
 
 **Data/Models/Services:**
 
@@ -135,7 +137,7 @@ pytest tests/test_smoke.py -v
 
 ### Performance
 
-Runs quickly although could run fast with caching. The main issue is the amount of API requests which I will address in the future.
+Runs quickly although could run faster with caching. The main issue is the amount of API requests which I will address in the future.
 
 ### Validation & Tests
 
@@ -170,7 +172,7 @@ Runs quickly although could run fast with caching. The main issue is the amount 
 - **Public Cloud App:** [https://pokevis.onrender.com](https://pokevis.onrender.com)
 - **PokeAPI Documentation:** [https://pokeapi.co/docs/v2](https://pokeapi.co/docs/v2)
 
-**External Code Used:**
+## External Code Used:
 - Bootstrap CSS/JS framework (CDN, MIT License)
 - jQuery library (CDN, MIT License)
 - Python Flask framework (BSD License)
