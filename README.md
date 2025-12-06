@@ -14,7 +14,7 @@
 - **API Integration**: Using external APIs (PokeAPI)
 
 **Architecture Diagram:**
-- ![](assets\pokeVIS_Architecture.png)
+![Architecture](assets/pokeVIS_Architecture.png)
 
 **Data/Models/Services:**
 
