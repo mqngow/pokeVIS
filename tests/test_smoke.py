@@ -52,27 +52,35 @@ def test_ability_page_loads():
         assert b'Static' in response.data or b'static' in response.data
 
 
+def test_health_endpoint():
+    with app.test_client() as client:
+        response = client.get('/health')
+        assert response.status_code == 200
+
 if __name__ == '__main__':
     print("Running smoke tests...")
     test_app_starts()
-    print("O App starts")
+    print("✅ App starts")
     
     test_home_page_loads()
-    print("O Home page loads")
+    print("✅ Home page loads")
     
     test_pokemon_page_pikachu()
-    print("O Pokemon page loads")
+    print("✅ Pokemon page loads")
     
     test_pokemon_not_found()
-    print("O 404 handling works")
+    print("✅ 404 handling works")
     
     test_search_api()
-    print("O Search API works")
+    print("✅ Search API works")
     
     test_move_page_loads()
-    print("O Move page loads")
+    print("✅ Move page loads")
     
     test_ability_page_loads()
-    print("O Ability page loads")
+    print("✅ Ability page loads")
     
-    print("\nAll smoke tests passed!")
+    test_health_endpoint()
+    print("✅ Health endpoint works")
+    
+    print("\n✅ All smoke tests passed!")
