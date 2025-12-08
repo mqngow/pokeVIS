@@ -2,7 +2,7 @@
 
 ## 1) Executive Summary
 
-**Problem:** Growing up I was a huge fan of Pokemon, constantly playing the new releases or, on occasion, buying pokemon cards. However, whilst playing pokemon games, I don't always know what pokemon I'm up against. This becomes especially important when it comes to stats and types.
+**Problem:** Growing up I was a huge fan of Pokemon, constantly playing the new releases or, on occasion, buying pokemon cards. However, whilst playing pokemon games, I did not always know what pokemon I was up against. This becomes especially important when it comes to stats and types.
 
 **Solution:** pokeVIS fixes this problem. It is a web-based information search system that gives useful information on any pokemon. Either by the Pokemon's name or ID, users can see what type, stats, abilities, and learnable moves for the Pokemon they search for in pokeVIS. The website it made to be easy to understand, with types for moves being badges with their respective type coloring, or a simple layout to understand how much HP (hit points/health) or SP (special defense) a pokemon has. The build itself pulls from the free and updating PokeAPI, making it easy to deploy and lightweight in general due to the lack of a database.
 
@@ -13,8 +13,10 @@
 - **Docker Containerization**: Application packaging and deployment
 - **API Integration**: Using external APIs (PokeAPI)
 
-**Architecture Diagram:**
-- ![](assets\pokeVIS_Architecture.png)
+**Architecture Diagram:**  
+<div align="center">
+  <img src="assets/pokeVIS_Architecture.png" alt="Architecture">
+</div>
 
 **Data/Models/Services:**
 
@@ -135,7 +137,7 @@ pytest tests/test_smoke.py -v
 
 ### Performance
 
-Runs quickly although could run fast with caching. The main issue is the amount of API requests which I will address in the future.
+Runs quickly although could run faster with caching. The main issue is the amount of API requests which I will address in the future.
 
 ### Validation & Tests
 
@@ -170,7 +172,7 @@ Runs quickly although could run fast with caching. The main issue is the amount 
 - **Public Cloud App:** [https://pokevis.onrender.com](https://pokevis.onrender.com)
 - **PokeAPI Documentation:** [https://pokeapi.co/docs/v2](https://pokeapi.co/docs/v2)
 
-**External Code Used:**
+## External Code Used:
 - Bootstrap CSS/JS framework (CDN, MIT License)
 - jQuery library (CDN, MIT License)
 - Python Flask framework (BSD License)
