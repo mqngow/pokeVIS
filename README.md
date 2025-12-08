@@ -149,6 +149,7 @@ Runs quickly although could run faster with caching. The main issue is the amoun
 - ✅ Search API endpoint
 - ✅ Move detail page
 - ✅ Ability detail page
+- ✅ Health Endpoint
 
 **Manual Testing:**
 - ✅ Tested with 25+ different Pokemon
